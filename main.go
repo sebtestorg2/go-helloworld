@@ -8,4 +8,6 @@ import (
 func main() {
 	string := seb.EpochString("yihaa")
 	fmt.Println(string)
+	stringtwo := "yoyoyo"
+	fmt.Println(stringtwo)
 }
