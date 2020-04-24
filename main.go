@@ -10,4 +10,6 @@ func main() {
 	fmt.Println(string)
 	stringtwo := "yoyoyo"
 	fmt.Println(stringtwo)
+	fmt.Println("more test")
+
 }
