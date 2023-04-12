@@ -60,7 +60,8 @@ jobs:
         with:
           ref: ${{ env.target_branch }}
           fetch-depth: '0'
-      - name: Port issue
+          token: ${{ secrets.GH_TOKEN }}
+      - name: Port PR
         if: ${{ env.is_member == 'true' }} && ${{ env.milestone_exists == 'true' }} && ${{ env.target_branch_exists == 'true' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
