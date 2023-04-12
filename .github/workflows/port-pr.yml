@@ -79,10 +79,7 @@ jobs:
           git config --global user.name "supersebbot"
           git checkout -b $BRANCH
           if ! git am -3 "$PATCH_FILE"; then
-              BODY=$(mktemp)
-              echo -e "Not creating port PR, there was an error running git am -3\n\n" >> $BODY
-              git am --show-current-patch=diff >> $BODY
-              gh issue comment ${ORIGINAL_ISSUE_NUMBER} --body-file $BODY
+              gh issue comment ${ORIGINAL_ISSUE_NUMBER} --body "Not creating port PR, there was an error running git am -3"
           else
               git push origin $BRANCH
               ORIGINAL_PR=$(gh pr view ${ORIGINAL_ISSUE_NUMBER} --json title,body)
