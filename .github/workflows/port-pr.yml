@@ -78,12 +78,9 @@ jobs:
           git config --global user.email "45007695+supersebbot@users.noreply.github.com"
           git config --global user.name "supersebbot"
           git checkout -b $BRANCH
-          GITAM_OUTPUT=$(git am -3 "$PATCH_FILE")
-          RETVAL=$?
-          if [ $RETVAL -ne 0 ]; then
+          if ! git am -3 "$PATCH_FILE"; then
               BODY=$(mktemp)
               echo -e "Not creating port PR, there was an error running git am -3\n\n" >> $BODY
-              echo -e "${GITAM_OUTPUT}\n\n" >> $BODY
               git am --show-current-patch=diff >> $BODY
               gh issue comment ${ORIGINAL_ISSUE_NUMBER} --body-file $BODY
           else
